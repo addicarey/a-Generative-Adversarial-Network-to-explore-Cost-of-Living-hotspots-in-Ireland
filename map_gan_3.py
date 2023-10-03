@@ -24,7 +24,7 @@ def build_generator(latent_dim):
     model.add(Dense(1, activation='linear'))
     return model
 
-# ... (Rest of your functions) ...
+
 # Discriminator model
 def build_discriminator():
     model = Sequential()
