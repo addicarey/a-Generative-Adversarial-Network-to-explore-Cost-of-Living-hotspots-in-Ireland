@@ -1,5 +1,6 @@
 # a-Generative-Adversarial-Network-to-explore-Cost-of-Living-hotspots-in-Ireland
 *currently in development, files uploaded afre work completed so far*
+
 The cost of living crisis in Ireland has been a major issue in recent years. The consequences include increases in house prices, rental prices, fuel costs, health care costs and daily essentials such as food and electricity. The cost of living in Ireland has had a significant impact on its residents and has placed enormous financial pressure on individuals and families.
 
 During the lockdown I started learning about Artificial Intelligence (AI) and Generative Adversarial Networks (GANs). AI refers to the development of computer systems that can perform tasks that normally require human intelligence, such as understanding natural language, recognizing patterns and making decisions. GANs are a type of machine learning model consisting of two components, a generator and a discriminator, which compete in a training process. The generator creates synthetic data, and the discriminator evaluates whether it is real or fake. Over time, GANs offer the advantage of generating highly realistic and diverse data, making them valuable for tasks such as image synthesis, data augmentation, and anomaly detection.
