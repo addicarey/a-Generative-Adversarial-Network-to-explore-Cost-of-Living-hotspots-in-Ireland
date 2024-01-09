@@ -2,7 +2,7 @@
 **Final Report Booklet available**
 
 
-#Abstract
+# Abstract
 
 The cost of living crisis in Ireland has been a major issue in recent years. The consequences include increases in house prices, rental prices, fuel costs, health care costs and daily essentials such as food and electricity. The cost of living in Ireland has had a significant impact on its residents and has placed enormous financial pressure on individuals and families.
 
