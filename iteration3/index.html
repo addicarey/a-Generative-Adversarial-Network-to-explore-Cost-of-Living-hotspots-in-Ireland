@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Map GAN</title> 
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="title"><span>Cost of Living</span></div>
+        <div class="content">
+        <div id = "form">
+          <div class="row">
+            <!-- <i class="fas fa-user"></i> -->
+            <p>Variable 1</p>
+            <input type="text" placeholder="Enter the following factors (Housing,Transport,Energy,Food, Education)" required id="Variable1">
+
+          </div>
+          <div class="row" style="margin-top: 5%;">
+            <!-- <i class="fas fa-user"></i> -->
+            <p>Variable 2</p>
+            <input type="text" placeholder="Enter the following factors (Housing,Transport,Energy,Food, Education)" required id="Variable2">
+            
+          </div>
+          <div class="row" style="margin-top: 5%;">
+            <!-- <i class="fas fa-user"></i> -->
+            <p>Variable 3</p>
+            <input type="text" placeholder="Enter the following factors (Housing,Transport,Energy,Food, Education)" required id="Variable3">
+            
+          </div>
+          <div class="row" style="margin-top: 5%;">
+            <!-- <i class="fas fa-user"></i> -->
+            <p>Variable 4</p>
+            <input type="text" placeholder="Enter the following factors (Housing,Transport,Energy,Food, Education)" required id="Variable4">
+            
+          </div>
+          <div class="row" style="margin-top: 5%;">
+            <!-- <i class="fas fa-user"></i> -->
+            <p>Variable 5</p>
+            <input type="text" placeholder="Enter the following factors (Housing,Transport,Energy,Food, Education)" required id="Variable5">
+            
+          </div>
+
+          <div class="row" style="margin-top: 5%;">
+            <!-- <i class="fas fa-user"></i> -->
+            <p>Location</p>
+            <input type="text" placeholder="Please enter a location" required id="Dublin"> 
+          </div>
+          <div class="row button" style="margin-top: 10%;">
+            <input type="submit" value="Process" onclick="get_process()">
+          </div>
+          <div class="row button">
+            <input type="submit" value="View Map" id="map" style="display: none;" onclick="get_map()">
+          </div>
+     
+          <iframe id="myIframe" style="display:none;" width="600" height="400"></iframe> 
+        
+      </div>
+      <div id="output">
+        <img src="static/loader.gif" style="width: 20%; margin-left: 40%; display: none;" id="loader">
+        <p style="display: none;" id="output1">Output</p>
+        <img src="static/factor_importance.png" style="width: 100%; display: none;" id="output2">
+        <input type="submit" value="View Map" id="map" style="display: none;" onclick="get_map()">
+      </div>
+    </div>
+    </div>
+    
+    <script>
+        function get_process(){
+			var Variable1 = document.getElementById("Variable1").value;
+            var Variable2 = document.getElementById("Variable2").value;
+            var Variable3 = document.getElementById("Variable3").value;
+            var Variable4 = document.getElementById("Variable4").value;
+            var Variable5 = document.getElementById("Variable5").value;
+            var Dublin = document.getElementById("Dublin").value;
+
+			if(Variable1!="" && Variable2 !="" && Variable3 !="" && Variable4!="" && Variable5!=""){
+
+
+                document.getElementById("loader").style.display="block"
+
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET', '/processing?variable1='+Variable1+'&variable2='+Variable2+'&variable3='+Variable3+'&variable4='+Variable4+'&variable5='+Variable5+'&Dublin='+Dublin, true);
+
+				xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                var data = JSON.parse(xhr.responseText);
+                document.getElementById("loader").style.display="none";
+                if(data['status']){
+                    document.getElementById("map").style.display="block";
+                    document.getElementById("output1").style.display="block";
+                    document.getElementById("output2").style.display="block";
+                    
+
+                    // Update the output element instead of using alert
+                    document.getElementById("outputMessage").innerText = data['messages'];
+                    document.getElementById("myIframe").src = "C:\Users\kjc10\Downloads\ACH1\templates\index.html";
+                    document.getElementById("myIframe").style.display = "block";
+                    document.getElementById("myIframe").src = "C:\Users\kjc10\Downloads\ACH1\templates\index.html";
+                }				
+            } else {
+                console.error('Request failed with status:', xhr.status);
+            }
+        }
+    };
+
+    xhr.send();
+}
+			else{
+				alert("Empty field")
+			}
+		}
+
+
+        function get_map(){
+			window.open(
+                './costOL_heatmap',
+                '_blank' // <- This is what makes it open in a new window.
+            );
+		}
+
+
+
+    </script>
+  </body>
+</html>
